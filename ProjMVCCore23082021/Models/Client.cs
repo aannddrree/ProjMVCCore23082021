@@ -14,6 +14,7 @@ namespace ProjMVCCore23082021.Models
         public string Name { get; set; }
         public string Tepephone { get; set; }
 
+        
         #endregion
     }
 }

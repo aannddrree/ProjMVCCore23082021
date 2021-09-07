@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjMVCCore23082021.Data;
 
 namespace ProjMVCCore23082021.Migrations
 {
     [DbContext(typeof(ProjMVCCore23082021Context))]
-    partial class ProjMVCCore23082021ContextModelSnapshot : ModelSnapshot
+    [Migration("20210906233925_v5")]
+    partial class v5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,7 +34,12 @@ namespace ProjMVCCore23082021.Migrations
                     b.Property<string>("Tepephone")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("VendaId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("VendaId");
 
                     b.ToTable("Client");
                 });
@@ -44,25 +51,23 @@ namespace ProjMVCCore23082021.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("ClientId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClientId");
-
                     b.ToTable("Venda");
+                });
+
+            modelBuilder.Entity("ProjMVCCore23082021.Models.Client", b =>
+                {
+                    b.HasOne("ProjMVCCore23082021.Models.Venda", null)
+                        .WithMany("Client")
+                        .HasForeignKey("VendaId");
                 });
 
             modelBuilder.Entity("ProjMVCCore23082021.Models.Venda", b =>
                 {
-                    b.HasOne("ProjMVCCore23082021.Models.Client", "Client")
-                        .WithMany()
-                        .HasForeignKey("ClientId");
-
                     b.Navigation("Client");
                 });
 #pragma warning restore 612, 618

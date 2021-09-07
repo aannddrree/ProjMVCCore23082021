@@ -58,5 +58,7 @@ namespace ProjMVCCore23082021
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
+
+        
     }
 }

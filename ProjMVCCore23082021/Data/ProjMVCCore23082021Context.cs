@@ -15,5 +15,8 @@ namespace ProjMVCCore23082021.Data
         }
 
         public DbSet<ProjMVCCore23082021.Models.Client> Client { get; set; }
+
+        public DbSet<ProjMVCCore23082021.Models.Venda> Venda { get; set; }
+
     }
 }
